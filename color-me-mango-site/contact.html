@@ -45,7 +45,7 @@
 
     <div class="reveal">
       <h2 style="margin-bottom:24px;">Send a Message</h2>
-      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <form id="cmm-contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="f6368ab0-fe60-42fd-bc81-2f3977847328">
         <input type="hidden" name="subject" value="New message from the Color Me Mango website">
         <input type="hidden" name="from_name" value="Color Me Mango Website">
@@ -74,8 +74,8 @@
           <textarea id="c-message" name="message" rows="5" placeholder="How can I help?" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-        <p id="contact-success" style="display:none; margin-top:14px; color: var(--brand-dark); font-weight:600;">Thank you! Your message has been sent. I'll be in touch soon.</p>
-        <p id="contact-error" style="display:none; margin-top:14px; color: var(--brand-dark); font-weight:600;">Sorry, something went wrong. Please email me directly at <a href="mailto:leigh@colormemango.com">leigh@colormemango.com</a>.</p>
+        <p id="cmm-contact-success" style="display:none; margin-top:14px; color: var(--brand-dark); font-weight:600;">Thank you! Your message has been sent. I'll be in touch soon.</p>
+        <p id="cmm-contact-error" style="display:none; margin-top:14px; color: var(--brand-dark); font-weight:600;">Sorry, something went wrong. Please email me directly at <a href="mailto:leigh@colormemango.com">leigh@colormemango.com</a>.</p>
       </form>
     </div>
 
@@ -150,5 +150,32 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+// Contact form: sends messages to Leigh's email through Web3Forms.
+// (Kept on this page so it works on its own.)
+(function () {
+  var form = document.getElementById('cmm-contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = document.getElementById('cmm-contact-success');
+    var err = document.getElementById('cmm-contact-error');
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    }).then(function (res) { return res.json(); }).then(function (json) {
+      if (!json.success) throw new Error(json.message || 'Form error');
+      ok.style.display = 'block'; err.style.display = 'none'; form.reset();
+    }).catch(function () {
+      err.style.display = 'block'; ok.style.display = 'none';
+    }).then(function () {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+    });
+  });
+})();
+</script>
 </body>
 </html>
