@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: LEIGHKAT13/color-me-mango-site
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+publish_mode: simple
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "content"
+    label: "Website Text"
+    files:
+      - label: "About Page"
+        name: "about_page"
+        file: "content.json"
+        fields:
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - label: "Leigh's Bio"
+                name: "bio"
+                widget: "text"
