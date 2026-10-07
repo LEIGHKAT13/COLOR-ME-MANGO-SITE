@@ -45,9 +45,11 @@
 
     <div class="reveal">
       <h2 style="margin-bottom:24px;">Send a Message</h2>
-      <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact">
-        <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f6368ab0-fe60-42fd-bc81-2f3977847328">
+        <input type="hidden" name="subject" value="New message from the Color Me Mango website">
+        <input type="hidden" name="from_name" value="Color Me Mango Website">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="form-field">
             <label for="c-name">Name</label>
@@ -60,7 +62,7 @@
         </div>
         <div class="form-field">
           <label for="c-subject">Subject</label>
-          <select id="c-subject" name="subject">
+          <select id="c-subject" name="topic">
             <option>General Question</option>
             <option>Booking Help</option>
             <option>Gift Question</option>
