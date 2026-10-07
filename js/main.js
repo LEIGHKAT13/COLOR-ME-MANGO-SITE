@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var summaryTotal = document.getElementById('summary-total');
   var summaryDue = document.getElementById('summary-due');
   var currentPrice = optionPills.length ? parseFloat(optionPills[0].getAttribute('data-price')) : 0;
+  var currentName = optionPills.length ? (optionPills[0].getAttribute('data-name') || '') : '';
+  var RUSH_PRICE = 50; // 24-hour rush add-on, Peach only
+  var rushBox = document.getElementById('rush');
+  var rushWrap = document.getElementById('rush-addon');
+  var rushRow = document.getElementById('summary-rush-row');
   var payMode = 'full'; // 'full' or 'deposit'
   var DEPOSIT_RATE = 0.3;
 
@@ -62,9 +67,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function updateSummary() {
     if (!summaryTotal) return;
-    summaryTotal.textContent = formatMoney(currentPrice);
+    var rushAllowed = currentName === 'Peach';
+    if (rushWrap) rushWrap.style.display = rushAllowed ? '' : 'none';
+    if (rushBox && !rushAllowed) rushBox.checked = false;
+    var rushOn = !!(rushBox && rushBox.checked);
+    if (rushWrap) rushWrap.querySelector('.option-pill').classList.toggle('selected', rushOn);
+    if (rushRow) rushRow.style.display = rushOn ? '' : 'none';
+    var total = currentPrice + (rushOn ? RUSH_PRICE : 0);
+    summaryTotal.textContent = formatMoney(total);
     if (summaryDue) {
-      var due = payMode === 'deposit' ? currentPrice * DEPOSIT_RATE : currentPrice;
+      var due = payMode === 'deposit' ? total * DEPOSIT_RATE : total;
       summaryDue.textContent = formatMoney(due) + (payMode === 'deposit' ? ' due today' : ' due today');
     }
   }
@@ -76,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var radio = pill.querySelector('input[type="radio"]');
       if (radio) radio.checked = true;
       currentPrice = parseFloat(pill.getAttribute('data-price')) || 0;
+      currentName = pill.getAttribute('data-name') || '';
       if (summaryService) summaryService.textContent = pill.getAttribute('data-name') || '';
       if (summaryDuration) summaryDuration.textContent = pill.getAttribute('data-duration') || '';
       updateSummary();
@@ -92,7 +105,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  if (rushBox) rushBox.addEventListener('change', updateSummary);
+
+  /* ---- Gift option ---- */
+  var giftBox = document.getElementById('gift');
+  var giftFields = document.getElementById('gift-fields');
+  var giftRow = document.getElementById('summary-gift-row');
+  function updateGift() {
+    if (!giftBox) return;
+    var on = giftBox.checked;
+    if (giftFields) giftFields.style.display = on ? '' : 'none';
+    if (giftRow) giftRow.style.display = on ? '' : 'none';
+    giftBox.closest('.option-pill').classList.toggle('selected', on);
+    ['gift-name', 'gift-email'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.required = on;
+    });
+  }
+  if (giftBox) {
+    giftBox.addEventListener('change', updateGift);
+    if (new URLSearchParams(window.location.search).get('gift')) giftBox.checked = true;
+    updateGift();
+  }
+
   updateSummary();
+
+  /* ---- Pre-select a package from the link (e.g. booking.html?service=papaya) ---- */
+  var wanted = new URLSearchParams(window.location.search).get('service');
+  if (wanted) {
+    optionPills.forEach(function (pill) {
+      if ((pill.getAttribute('data-name') || '').toLowerCase() === wanted.toLowerCase()) pill.click();
+    });
+  }
 
   /* ---- Booking form submit -> placeholder checkout redirect ----
      In production, replace this handler with a real Stripe Checkout
@@ -112,9 +156,26 @@ document.addEventListener('DOMContentLoaded', function () {
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var msg = document.getElementById('contact-success');
-      if (msg) msg.style.display = 'block';
-      contactForm.reset();
+      var ok = document.getElementById('contact-success');
+      var err = document.getElementById('contact-error');
+      var btn = contactForm.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+      // Web3Forms: submissions are emailed to the address tied to the access key
+      var data = Object.fromEntries(new FormData(contactForm));
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) { return res.json(); }).then(function (json) {
+        if (!json.success) throw new Error(json.message || 'Form error');
+        if (ok) ok.style.display = 'block';
+        if (err) err.style.display = 'none';
+        contactForm.reset();
+      }).catch(function () {
+        if (err) err.style.display = 'block';
+      }).then(function () {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+      });
     });
   }
 
