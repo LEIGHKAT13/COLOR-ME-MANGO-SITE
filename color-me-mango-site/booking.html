@@ -42,14 +42,14 @@
 
 <section>
   <div class="container">
-    <form class="booking-layout" id="booking-form">
+    <form class="booking-layout" id="cmm-booking-form">
       <div>
 
         <!-- STEP 1: SERVICE -->
         <div class="booking-step reveal">
           <h3><span class="num">1</span> Choose Your Package</h3>
           <div class="option-list">
-            <label class="option-pill selected" data-price="149" data-name="Peach" data-duration="Digital analysis">
+            <label class="option-pill selected" data-price="97" data-name="Peach" data-duration="Digital analysis">
               <span class="option-main">
                 <input type="radio" name="service" checked>
                 <span>
@@ -57,9 +57,9 @@
                   <span class="option-sub">Digital analysis</span>
                 </span>
               </span>
-              <span class="option-price">$149</span>
+              <span class="option-price">$97</span>
             </label>
-            <label class="option-pill" data-price="199" data-name="Papaya" data-duration="Analysis + personal video">
+            <label class="option-pill" data-price="139" data-name="Papaya" data-duration="Analysis + personal video">
               <span class="option-main">
                 <input type="radio" name="service">
                 <span>
@@ -67,9 +67,9 @@
                   <span class="option-sub">Analysis + personal video</span>
                 </span>
               </span>
-              <span class="option-price">$199</span>
+              <span class="option-price">$139</span>
             </label>
-            <label class="option-pill" data-price="249" data-name="Mango" data-duration="Analysis + video + 30-min Zoom">
+            <label class="option-pill" data-price="189" data-name="Mango" data-duration="Analysis + video + 30-min Zoom">
               <span class="option-main">
                 <input type="radio" name="service">
                 <span>
@@ -77,7 +77,7 @@
                   <span class="option-sub">Analysis + video + 30-min Zoom</span>
                 </span>
               </span>
-              <span class="option-price">$249</span>
+              <span class="option-price">$189</span>
             </label>
           </div>
           <div class="rush-addon" id="rush-addon">
@@ -148,12 +148,10 @@
         <!-- STEP 4: PAYMENT -->
         <div class="booking-step reveal">
           <h3><span class="num">3</span> Payment</h3>
-          <p class="editable-note" style="margin-top:-6px;">
-            Placeholder checkout — see setup notes below to connect Stripe or Square.
-          </p>
+          <p style="margin-top:-4px;">When you continue, you'll pay on Stripe's secure checkout page. Pay by card or with other secure options like Apple Pay or Google Pay, depending on your device.</p>
           <div class="trust-badges">
             <span>🔒 Secure checkout</span>
-            <span>💳 Stripe / Square supported</span>
+            <span>💳 Powered by Stripe</span>
           </div>
         </div>
 
@@ -180,14 +178,14 @@
         </div>
         <div class="summary-row total">
           <span>Total</span>
-          <span id="summary-total">$149</span>
+          <span id="summary-total">$97</span>
         </div>
         <div class="summary-row" style="border-bottom:none; padding-top:0;">
           <span>Due Today</span>
-          <span id="summary-due">$149 due today</span>
+          <span id="summary-due">$97 due today</span>
         </div>
         <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px;">Continue to Secure Payment</button>
-        <p class="summary-note">You'll be redirected to a secure Stripe or Square checkout to complete payment. No charges are made on this page.</p>
+        <p class="summary-note">You'll be taken to Stripe's secure checkout to complete payment. No charges are made on this page.</p>
       </aside>
     </form>
 
@@ -269,5 +267,71 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+// ============================================================
+// Booking -> Stripe checkout
+// 1) Emails Leigh the booking details (Web3Forms)
+// 2) Sends the client to the matching Stripe Payment Link
+// To go live: replace these TEST links with the LIVE Stripe links.
+// ============================================================
+(function () {
+  var STRIPE_LINKS = {
+    'Peach':      'https://buy.stripe.com/test_4gMaEXaXCcw645BgJA8ww01',
+    'Peach+Rush': 'https://buy.stripe.com/test_aFadR94ze9jUeKfbpg8ww04',
+    'Papaya':     'https://buy.stripe.com/test_8x27sLghWfIi0Tp3WO8ww02',
+    'Mango':      'https://buy.stripe.com/test_7sYaEX9Tycw69pV7908ww03'
+  };
+  var WEB3FORMS_KEY = 'f6368ab0-fe60-42fd-bc81-2f3977847328';
+
+  var form = document.getElementById('cmm-booking-form');
+  if (!form) return;
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pill = form.querySelector('.option-pill.selected[data-price]');
+    var pkg = pill ? pill.getAttribute('data-name') : 'Peach';
+    var rushBox = document.getElementById('rush');
+    var rush = pkg === 'Peach' && rushBox && rushBox.checked;
+    var giftBox = document.getElementById('gift');
+    var gift = giftBox && giftBox.checked;
+    var key = rush ? 'Peach+Rush' : pkg;
+    var link = STRIPE_LINKS[key];
+    var total = document.getElementById('summary-total') ? document.getElementById('summary-total').textContent : '';
+    var email = val('femail');
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Taking you to secure checkout...'; }
+
+    var details = {
+      access_key: WEB3FORMS_KEY,
+      subject: 'New booking started: ' + pkg + (rush ? ' + 24-Hour Rush' : '') + (gift ? ' (GIFT)' : '') + ' ' + total,
+      from_name: 'Color Me Mango Website',
+      package: pkg + (rush ? ' + 24-Hour Rush' : ''),
+      total: total,
+      name: val('fname'),
+      email: email,
+      phone: val('fphone'),
+      notes: val('fnotes'),
+      is_gift: gift ? 'Yes' : 'No',
+      gift_recipient_name: gift ? val('gift-name') : '',
+      gift_recipient_email: gift ? val('gift-email') : '',
+      gift_message: gift ? val('gift-message') : '',
+      reminder: 'Payment happens on Stripe next. Check Stripe for the payment before sending the welcome email.'
+    };
+
+    var go = function () {
+      window.location.href = link + (email ? '?prefilled_email=' + encodeURIComponent(email) : '');
+    };
+    // Send the details, but never block checkout if the email service is slow or down
+    var timer = setTimeout(go, 4000);
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(details)
+    }).catch(function () {}).then(function () { clearTimeout(timer); go(); });
+  });
+})();
+</script>
 </body>
 </html>
