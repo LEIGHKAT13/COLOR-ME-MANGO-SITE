@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Your Color Analysis Session | Color Me Mango</title>
-<meta name="description" content="Book and securely pay for your certified color analysis session online. Choose your package, pick a time, and pay in full or leave a deposit.">
+<title>Book Your Color Analysis | Color Me Mango</title>
+<meta name="description" content="Book and securely pay for your virtual color analysis online. Choose Peach, Papaya, or Mango and get started from home.">
 <meta name="keywords" content="book color analysis, Personal Color Analysis appointment, Certified Color Analysis booking">
 <link rel="canonical" href="/booking.html">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -15,7 +17,7 @@
 
 <header class="site-header">
   <nav class="nav">
-    <a href="index.html" class="brand"><span class="brand-mark"></span>Color Me Mango</a>
+    <a href="index.html" class="brand"><img src="images/logo.png" alt="Color Me Mango logo" class="brand-logo">Color Me Mango</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -33,89 +35,69 @@
 <section class="page-hero" style="padding-bottom:0;">
   <div class="container">
     <p class="eyebrow" style="justify-content:center;">Book &amp; Pay Online</p>
-    <h1>Reserve your color analysis session</h1>
-    <p class="lede center">Pick your package, choose a time, and secure your spot with a full payment or deposit.</p>
+    <h1>Book your color analysis</h1>
+    <p class="lede center">Pick your package and check out securely. After you book, I'll email you your questionnaire and photo guide. Your results arrive within 5 business days of when I receive your photos.</p>
   </div>
 </section>
 
 <section>
   <div class="container">
-    <form class="booking-layout" id="booking-form">
+    <form class="booking-layout" id="cmm-booking-form">
       <div>
 
         <!-- STEP 1: SERVICE -->
         <div class="booking-step reveal">
-          <h3><span class="num">1</span> Choose Your Session</h3>
+          <h3><span class="num">1</span> Choose Your Package</h3>
           <div class="option-list">
-            <label class="option-pill selected" data-price="275" data-name="Signature Color Analysis" data-duration="90 min · In-studio">
+            <label class="option-pill selected" data-price="97" data-name="Peach" data-duration="Digital analysis">
               <span class="option-main">
                 <input type="radio" name="service" checked>
                 <span>
-                  <span class="option-title">Signature Color Analysis</span><br>
-                  <span class="option-sub">90 min · In-studio</span>
+                  <span class="option-title">Peach</span><br>
+                  <span class="option-sub">Digital analysis</span>
                 </span>
               </span>
-              <span class="option-price">$275</span>
+              <span class="option-price">$97</span>
             </label>
-            <label class="option-pill" data-price="150" data-name="Essential Color Analysis" data-duration="60 min · Virtual">
+            <label class="option-pill" data-price="139" data-name="Papaya" data-duration="Analysis + personal video">
               <span class="option-main">
                 <input type="radio" name="service">
                 <span>
-                  <span class="option-title">Essential Color Analysis</span><br>
-                  <span class="option-sub">60 min · Virtual</span>
+                  <span class="option-title">Papaya</span><br>
+                  <span class="option-sub">Analysis + personal video</span>
                 </span>
               </span>
-              <span class="option-price">$150</span>
+              <span class="option-price">$139</span>
             </label>
-            <label class="option-pill" data-price="395" data-name="Color & Style Deep Dive" data-duration="2.5 hrs · In-studio">
+            <label class="option-pill" data-price="189" data-name="Mango" data-duration="Analysis + video + 30-min Zoom">
               <span class="option-main">
                 <input type="radio" name="service">
                 <span>
-                  <span class="option-title">Color &amp; Style Deep Dive</span><br>
-                  <span class="option-sub">2.5 hrs · In-studio</span>
+                  <span class="option-title">Mango</span><br>
+                  <span class="option-sub">Analysis + video + 30-min Zoom</span>
                 </span>
               </span>
-              <span class="option-price">$395</span>
-            </label>
-            <label class="option-pill" data-price="95" data-name="Palette Refresh" data-duration="30 min · Returning clients">
-              <span class="option-main">
-                <input type="radio" name="service">
-                <span>
-                  <span class="option-title">Palette Refresh</span><br>
-                  <span class="option-sub">30 min · Returning clients</span>
-                </span>
-              </span>
-              <span class="option-price">$95</span>
+              <span class="option-price">$189</span>
             </label>
           </div>
-        </div>
-
-        <!-- STEP 2: DATE/TIME (placeholder scheduler) -->
-        <div class="booking-step reveal">
-          <h3><span class="num">2</span> Pick a Date &amp; Time</h3>
-          <p class="editable-note" style="margin-top:-6px;">Placeholder scheduler — connect Calendly, Acuity, Square Appointments, or your preferred booking tool here to show real-time availability.</p>
-          <div class="form-row" style="margin-top:14px;">
-            <div class="form-field">
-              <label for="pref-date">Preferred Date</label>
-              <input type="date" id="pref-date" required>
-            </div>
-            <div class="form-field">
-              <label for="pref-time">Preferred Time</label>
-              <select id="pref-time" required>
-                <option value="">Select a time</option>
-                <option>9:00 AM</option>
-                <option>11:00 AM</option>
-                <option>1:00 PM</option>
-                <option>3:00 PM</option>
-                <option>5:00 PM</option>
-              </select>
-            </div>
+          <div class="rush-addon" id="rush-addon">
+            <p class="rush-label">Optional add-on for Peach</p>
+            <label class="option-pill">
+              <span class="option-main">
+                <input type="checkbox" id="rush" name="rush">
+                <span>
+                  <span class="option-title">24-Hour Rush</span><br>
+                  <span class="option-sub">Results within 24 hours of receiving your photos, weekends included</span>
+                </span>
+              </span>
+              <span class="option-price">+$50</span>
+            </label>
           </div>
         </div>
 
         <!-- STEP 3: YOUR INFO -->
         <div class="booking-step reveal">
-          <h3><span class="num">3</span> Your Information</h3>
+          <h3><span class="num">2</span> Your Information</h3>
           <div class="form-row">
             <div class="form-field">
               <label for="fname">Full Name</label>
@@ -131,25 +113,49 @@
             <input type="tel" id="fphone" placeholder="(555) 010-2468">
           </div>
           <div class="form-field">
-            <label for="fnotes">Anything I should know before your session?</label>
+            <label for="fnotes">Anything I should know?</label>
             <textarea id="fnotes" rows="3" placeholder="Optional notes, questions, or accessibility needs"></textarea>
+          </div>
+          <label class="feature-optin" style="display:flex;gap:10px;align-items:flex-start;margin:4px 0 18px;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;">
+            <input type="checkbox" id="feature-ok" style="margin-top:3px;width:18px;height:18px;accent-color:var(--brand);">
+            <span><strong style="color:var(--ink);">Open to being featured (optional).</strong> Leigh may ask to share your photos or results on social media. Nothing is ever shared without your written OK.</span>
+          </label>
+          <div class="gift-addon" id="gift-addon">
+            <label class="option-pill">
+              <span class="option-main">
+                <input type="checkbox" id="gift" name="gift">
+                <span>
+                  <span class="option-title">This is a gift</span><br>
+                  <span class="option-sub">I'll send the welcome email and photo guide straight to the person receiving it</span>
+                </span>
+              </span>
+            </label>
+            <div class="gift-fields" id="gift-fields" style="display:none;">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="gift-name">Recipient's Name</label>
+                  <input type="text" id="gift-name" placeholder="Their name">
+                </div>
+                <div class="form-field">
+                  <label for="gift-email">Recipient's Email</label>
+                  <input type="email" id="gift-email" placeholder="their@email.com">
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="gift-message">Gift Message (optional)</label>
+                <textarea id="gift-message" rows="2" placeholder="A note to include with their gift"></textarea>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- STEP 4: PAYMENT -->
         <div class="booking-step reveal">
-          <h3><span class="num">4</span> Payment</h3>
-          <p class="editable-note" style="margin-top:-6px;">
-            Placeholder checkout — see setup notes below to connect Stripe or Square.
-          </p>
-          <div class="pay-toggle">
-            <button type="button" class="active" data-mode="full">Pay in Full</button>
-            <button type="button" data-mode="deposit">Pay 30% Deposit</button>
-          </div>
+          <h3><span class="num">3</span> Payment</h3>
+          <p style="margin-top:-4px;">When you continue, you'll pay on Stripe's secure checkout page. Pay by card or with other secure options like Apple Pay or Google Pay, depending on your device.</p>
           <div class="trust-badges">
             <span>🔒 Secure checkout</span>
-            <span>💳 Stripe / Square supported</span>
-            <span>↩ Free reschedule 48h+ notice</span>
+            <span>💳 Powered by Stripe</span>
           </div>
         </div>
 
@@ -159,23 +165,31 @@
       <aside class="summary-card reveal">
         <h3>Order Summary</h3>
         <div class="summary-row">
-          <span>Session</span>
-          <span id="summary-service">Signature Color Analysis</span>
+          <span>Package</span>
+          <span id="summary-service">Peach</span>
         </div>
         <div class="summary-row">
-          <span>Duration</span>
-          <span id="summary-duration">90 min · In-studio</span>
+          <span>Includes</span>
+          <span id="summary-duration">Digital analysis</span>
+        </div>
+        <div class="summary-row" id="summary-gift-row" style="display:none;">
+          <span>Gift</span>
+          <span>Yes</span>
+        </div>
+        <div class="summary-row" id="summary-rush-row" style="display:none;">
+          <span>24-Hour Rush</span>
+          <span>+$50</span>
         </div>
         <div class="summary-row total">
           <span>Total</span>
-          <span id="summary-total">$275</span>
+          <span id="summary-total">$97</span>
         </div>
         <div class="summary-row" style="border-bottom:none; padding-top:0;">
           <span>Due Today</span>
-          <span id="summary-due">$275 due today</span>
+          <span id="summary-due">$97 due today</span>
         </div>
         <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px;">Continue to Secure Payment</button>
-        <p class="summary-note">You'll be redirected to a secure Stripe or Square checkout to complete payment. No charges are made on this page.</p>
+        <p class="summary-note">You'll be taken to Stripe's secure checkout to complete payment. No charges are made on this page. By booking, you agree to the <a href="terms.html" style="color:#fff;text-decoration:underline;">Terms</a> and <a href="privacy.html" style="color:#fff;text-decoration:underline;">Privacy Policy</a>.</p>
       </aside>
     </form>
 
@@ -218,12 +232,10 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand" style="color:#fff;"><span class="brand-mark"></span>Color Me Mango</a>
+        <a href="index.html" class="brand" style="color:#fff;"><img src="images/logo.png" alt="Color Me Mango logo" class="brand-logo">Color Me Mango</a>
         <p>Certified personal color analysis to help you look vibrant, shop smarter, and love what's in your closet.</p>
         <div class="footer-social">
-          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-          <a href="#" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 1.5-6 1.5-8a2.5 2.5 0 0 1 5 0c0 2-1 4-2.5 4"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M14 9h2V6h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V9a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="https://www.instagram.com/colorme_mango/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         </div>
       </div>
       <div>
@@ -236,11 +248,11 @@
         </ul>
       </div>
       <div>
-        <h4>Studio</h4>
+        <h4>Help</h4>
         <ul>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="what-is-color-analysis.html#faq">FAQ</a></li>
-          <li><a href="services.html">Gift Cards (Coming Soon)</a></li>
+          <li><a href="booking.html?gift=1">Give as a Gift</a></li>
         </ul>
       </div>
       <div>
@@ -259,5 +271,72 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+// ============================================================
+// Booking -> Stripe checkout
+// 1) Emails Leigh the booking details (Web3Forms)
+// 2) Sends the client to the matching Stripe Payment Link
+// LIVE Stripe Payment Links (real payments).
+// ============================================================
+(function () {
+  var STRIPE_LINKS = {
+    'Peach':      'https://buy.stripe.com/7sYcN49rWagOgHW9jpaEE02',
+    'Peach+Rush': 'https://buy.stripe.com/bJe7sK47C9cK0IYcvBaEE03',
+    'Papaya':     'https://buy.stripe.com/9B600i5bG88GfDS8flaEE01',
+    'Mango':      'https://buy.stripe.com/fZu8wO33ycoW4ZebrxaEE00'
+  };
+  var WEB3FORMS_KEY = 'f6368ab0-fe60-42fd-bc81-2f3977847328';
+
+  var form = document.getElementById('cmm-booking-form');
+  if (!form) return;
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pill = form.querySelector('.option-pill.selected[data-price]');
+    var pkg = pill ? pill.getAttribute('data-name') : 'Peach';
+    var rushBox = document.getElementById('rush');
+    var rush = pkg === 'Peach' && rushBox && rushBox.checked;
+    var giftBox = document.getElementById('gift');
+    var gift = giftBox && giftBox.checked;
+    var key = rush ? 'Peach+Rush' : pkg;
+    var link = STRIPE_LINKS[key];
+    var total = document.getElementById('summary-total') ? document.getElementById('summary-total').textContent : '';
+    var email = val('femail');
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Taking you to secure checkout...'; }
+
+    var details = {
+      access_key: WEB3FORMS_KEY,
+      subject: 'New booking started: ' + pkg + (rush ? ' + 24-Hour Rush' : '') + (gift ? ' (GIFT)' : '') + ' ' + total,
+      from_name: 'Color Me Mango Website',
+      package: pkg + (rush ? ' + 24-Hour Rush' : ''),
+      total: total,
+      name: val('fname'),
+      email: email,
+      phone: val('fphone'),
+      notes: val('fnotes'),
+      is_gift: gift ? 'Yes' : 'No',
+      open_to_being_featured: (document.getElementById('feature-ok') || {}).checked ? 'Yes' : 'No',
+      gift_recipient_name: gift ? val('gift-name') : '',
+      gift_recipient_email: gift ? val('gift-email') : '',
+      gift_message: gift ? val('gift-message') : '',
+      reminder: 'Payment happens on Stripe next. Check Stripe for the payment before sending the welcome email.'
+    };
+
+    var go = function () {
+      window.location.href = link + (email ? '?prefilled_email=' + encodeURIComponent(email) : '');
+    };
+    // Send the details, but never block checkout if the email service is slow or down
+    var timer = setTimeout(go, 4000);
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(details)
+    }).catch(function () {}).then(function () { clearTimeout(timer); go(); });
+  });
+})();
+</script>
 </body>
 </html>
