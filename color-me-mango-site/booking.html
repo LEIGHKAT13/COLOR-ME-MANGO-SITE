@@ -116,6 +116,10 @@
             <label for="fnotes">Anything I should know?</label>
             <textarea id="fnotes" rows="3" placeholder="Optional notes, questions, or accessibility needs"></textarea>
           </div>
+          <label class="feature-optin" style="display:flex;gap:10px;align-items:flex-start;margin:4px 0 18px;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;">
+            <input type="checkbox" id="feature-ok" style="margin-top:3px;width:18px;height:18px;accent-color:var(--brand);">
+            <span><strong style="color:var(--ink);">Open to being featured (optional).</strong> Leigh may ask to share your photos or results on social media. Nothing is ever shared without your written OK.</span>
+          </label>
           <div class="gift-addon" id="gift-addon">
             <label class="option-pill">
               <span class="option-main">
@@ -185,7 +189,7 @@
           <span id="summary-due">$97 due today</span>
         </div>
         <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px;">Continue to Secure Payment</button>
-        <p class="summary-note">You'll be taken to Stripe's secure checkout to complete payment. No charges are made on this page.</p>
+        <p class="summary-note">You'll be taken to Stripe's secure checkout to complete payment. No charges are made on this page. By booking, you agree to the <a href="terms.html" style="color:#fff;text-decoration:underline;">Terms</a> and <a href="privacy.html" style="color:#fff;text-decoration:underline;">Privacy Policy</a>.</p>
       </aside>
     </form>
 
@@ -314,6 +318,7 @@
       phone: val('fphone'),
       notes: val('fnotes'),
       is_gift: gift ? 'Yes' : 'No',
+      open_to_being_featured: (document.getElementById('feature-ok') || {}).checked ? 'Yes' : 'No',
       gift_recipient_name: gift ? val('gift-name') : '',
       gift_recipient_email: gift ? val('gift-email') : '',
       gift_message: gift ? val('gift-message') : '',
