@@ -25,6 +25,40 @@
   "email": "leigh@colormemango.com"
 }
 </script>
+<style>
+/* ---- Not-AI comparison ---- */
+.ai-compare { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; max-width: 960px; margin: 0 auto; align-items: stretch; }
+@media (max-width: 760px) { .ai-compare { grid-template-columns: 1fr; } }
+.ai-col { border-radius: var(--r-lg); padding: 32px 30px; }
+.ai-col h3 { margin-bottom: 18px; }
+.ai-col ul { list-style: none; padding: 0; margin: 0; }
+.ai-col li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 0.95rem; }
+.ai-col li:last-child { border-bottom: none; }
+.ai-col li svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; }
+.ai-col-bot { background: var(--bg-alt); color: var(--ink-faint); }
+.ai-col-bot h3 { color: var(--ink-soft); }
+.ai-col-bot li svg { color: var(--ink-faint); }
+.ai-col-me { background: var(--card); border: 1.5px solid var(--brand); box-shadow: var(--shadow-card); color: var(--ink); }
+.ai-col-me li svg { color: var(--brand); }
+.guide-list li span { flex: 1; }
+
+/* ---- Review carousel ---- */
+.rv-carousel { max-width: 780px; margin: 0 auto; }
+.rv-track { display: grid; background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--r-md); box-shadow: var(--shadow-card); padding: 44px 48px 36px; text-align: center; }
+.rv-slide { grid-area: 1 / 1; margin: 0; opacity: 0; visibility: hidden; transition: opacity .5s ease, visibility .5s; display: flex; flex-direction: column; justify-content: center; }
+.rv-slide.is-active { opacity: 1; visibility: visible; }
+.rv-slide blockquote { margin: 0; font-size: 1.15rem; line-height: 1.65; }
+.rv-slide figcaption { margin-top: 18px; display: flex; flex-direction: column; gap: 2px; }
+.rv-slide .testi-name { margin-top: 0; }
+.rv-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; }
+.rv-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s, border-color .2s; }
+.rv-arrow:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+.rv-arrow svg { width: 18px; height: 18px; }
+.rv-dots { display: flex; gap: 10px; }
+.rv-dot { width: 10px; height: 10px; border-radius: 50%; border: none; padding: 0; background: #CDBBA8; cursor: pointer; transition: background .2s, transform .2s; }
+.rv-dot.is-active { background: var(--brand); transform: scale(1.25); }
+@media (max-width: 560px) { .rv-track { padding: 32px 22px 26px; } .rv-slide blockquote { font-size: 1.02rem; } }
+</style>
 </head>
 <body>
 
@@ -83,8 +117,13 @@
       <div class="reveal">
         <p class="eyebrow">The Basics</p>
         <h2>What exactly is color analysis?</h2>
-        <p>Personal color analysis is the art and science of identifying which colors work in harmony with your unique skin tone, eye color, and hair color. I study photos you take at home, using my simple photo guide, to see how different colors work with your natural coloring. From there, I uncover the palette that makes you look naturally healthy, vibrant, and put-together.</p>
-        <p>Every person falls into one of twelve seasons, nested within the four classic seasons of <strong>Spring, Summer, Autumn,</strong> and <strong>Winter</strong>, each with its own undertone and range of shades. Once you know yours, choosing what to wear (and what to buy) becomes effortless.</p>
+        <p>It's finding the colors that work in harmony with your natural skin, hair, and eyes. Here's how it works with me:</p>
+        <ul class="guide-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> <span>I study photos you take at home, using my simple photo guide</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> <span>I look at your undertone, chroma, and contrast</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> <span>You're matched to one of 12 seasons within <strong>Spring, Summer, Autumn,</strong> and <strong>Winter</strong></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> <span>You get a palette that makes getting dressed (and shopping) easy</span></li>
+        </ul>
         <a href="what-is-color-analysis.html" class="btn btn-outline">Learn How It Works</a>
       </div>
       <div class="reveal">
@@ -111,8 +150,40 @@
   </div>
 </section>
 
-<!-- ================= HOW IT WORKS (mini) ================= -->
+<!-- ================= NOT AI ================= -->
 <section>
+  <div class="container">
+    <div class="center reveal" style="margin-bottom:44px;">
+      <p class="eyebrow" style="justify-content:center;">Why a Real Analyst</p>
+      <h2>Real eyes. Real training. Not an algorithm.</h2>
+      <p class="lede center">AI apps can guess at a season from a photo. Your analysis is done by me, a certified color analyst, looking at <em>you</em>.</p>
+    </div>
+    <div class="ai-compare">
+      <div class="ai-col ai-col-bot reveal">
+        <h3>AI color apps</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg> Read the whole photo, lighting and background included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg> Can't reliably see undertone or chroma</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg> Often land people in seasons that don't fit them</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg> Give a label with no explanation</li>
+        </ul>
+      </div>
+      <div class="ai-col ai-col-me reveal">
+        <h3>Your analysis with me</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> I study your skin, hair, and eyes, not the room around you</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Trained to read undertone, chroma, and contrast</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> I compare neighboring seasons before deciding</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> I explain why you landed in your season</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> If your lighting is off, I'll ask for a retake instead of guessing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS (mini) ================= -->
+<section class="section-alt">
   <div class="container">
     <div class="center reveal" style="margin-bottom:44px;">
       <p class="eyebrow" style="justify-content:center;">How It Works</p>
@@ -189,12 +260,27 @@
       <p class="eyebrow" style="justify-content:center;">Client Stories</p>
       <h2>What clients are saying</h2>
     </div>
-    <div style="max-width:760px; margin:0 auto;">
-      <div class="testi-card reveal" style="padding:44px 48px; text-align:center;">
-        <p class="testi-quote" style="font-size:1.2rem; line-height:1.6;">"Leigh's color analysis has totally changed the way I view not only my clothes but also my own beauty. I spent most of my life dressing as an Autumn and was absolutely shocked to find that I'm actually a Soft Summer. Not only is shopping now much simpler, but Leigh showed me how wearing the colors that actually complement me highlights ME, not just my style. This is a must for anyone who wants to feel uniquely beautiful in their own skin."</p>
-        <p class="testi-name">Marlaina M.</p>
-        <p class="testi-role">Soft Summer</p>
+    <div class="rv-carousel reveal" aria-roledescription="carousel" aria-label="Client reviews">
+      <div class="rv-track">
+        <figure class="rv-slide is-active" role="group" aria-roledescription="slide" aria-label="Review 1 of 3">
+          <blockquote class="testi-quote">"Leigh's color analysis has totally changed the way I view not only my clothes but also my own beauty. I spent most of my life dressing as an Autumn and was absolutely shocked to find that I'm actually a Soft Summer. Not only is shopping now much simpler, but Leigh showed me how wearing the colors that actually complement me highlights ME, not just my style. This is a must for anyone who wants to feel uniquely beautiful in their own skin."</blockquote>
+          <figcaption><span class="testi-name">Marlaina M.</span><span class="testi-role">Soft Summer</span></figcaption>
+        </figure>
+        <figure class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 2 of 3" aria-hidden="true">
+          <blockquote class="testi-quote">"Color analysis with Leigh has given me the confidence that I needed postpartum. Now I can be more intentional with the clothing that I buy and not waste money on clothing that doesn't make me feel my best. I can't wait to simplify and refresh my closet using the guide that Leigh provided me with."</blockquote>
+          <figcaption><span class="testi-name">Payton H.</span><span class="testi-role">Light Spring</span></figcaption>
+        </figure>
+        <figure class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 3 of 3" aria-hidden="true">
+          <blockquote class="testi-quote">"I thought I knew what looked good on me and always gravitated toward darker colors, especially jet black, so I was a little nervous! Now I feel so much more confident choosing clothes, hair colors, makeup, and accessories that actually complement me. The packet is incredibly helpful, and having a personal color palette I can reference anywhere makes shopping and putting outfits together so much easier! Leigh even explains which colors to avoid and your sister season. I definitely recommend getting a color analysis to boost your confidence!"</blockquote>
+          <figcaption><span class="testi-name">Jess M.</span><span class="testi-role">Light Summer</span></figcaption>
+        </figure>
       </div>
+      <div class="rv-controls">
+        <button type="button" class="rv-arrow rv-prev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="rv-dots"><button type="button" class="rv-dot is-active" aria-label="Show review 1"></button><button type="button" class="rv-dot" aria-label="Show review 2"></button><button type="button" class="rv-dot" aria-label="Show review 3"></button></div>
+        <button type="button" class="rv-arrow rv-next" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -255,5 +341,32 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+// Review carousel: arrows, dots, swipe, gentle auto-advance (pauses on hover/tap)
+(function () {
+  var root = document.querySelector('.rv-carousel'); if (!root) return;
+  var slides = root.querySelectorAll('.rv-slide'), dots = root.querySelectorAll('.rv-dot'), i = 0, timer;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); s.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+    dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+  }
+  function start() { if (reduce) return; stop(); timer = setInterval(function () { show(i + 1); }, 8000); }
+  function stop() { clearInterval(timer); }
+  root.querySelector('.rv-prev').addEventListener('click', function () { show(i - 1); start(); });
+  root.querySelector('.rv-next').addEventListener('click', function () { show(i + 1); start(); });
+  dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); start(); }); });
+  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
+  var x0 = null;
+  root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; start();
+  });
+  start();
+})();
+</script>
 </body>
 </html>
